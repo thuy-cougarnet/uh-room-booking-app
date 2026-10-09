@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Bookings - UH Student Center</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <span class="brand">UH Student Center Rooms</span>
+    <a href="index.html">Home</a>
+    <a href="booking.html">Book a Room</a>
+    <a href="my-bookings.html" class="active">My Bookings</a>
+  </nav>
+
+  <main>
+    <h1>My Bookings</h1>
+    <div id="bookings-list">
+      <!-- Booking items are inserted here by js/my-bookings.js -->
+      <p>Loading bookings...</p>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    University of Houston · Student Center Room Booking (student project)
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/my-bookings.js"></script>
+</body>
+</html>

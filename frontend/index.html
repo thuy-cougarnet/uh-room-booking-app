@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UH Student Center Room Booking</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <span class="brand">UH Student Center Rooms</span>
+    <a href="index.html" class="active">Home</a>
+    <a href="booking.html">Book a Room</a>
+    <a href="my-bookings.html">My Bookings</a>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <h1>Welcome to the UH Student Center</h1>
+      <p>
+        Find a room for your club meeting, study session, or event — and book it in seconds.
+      </p>
+      <a class="hero-btn" href="booking.html">Book a Room</a>
+    </section>
+
+    <h2>Available Rooms</h2>
+    <div id="room-list" class="room-list">
+      <!-- Room cards are inserted here by js/rooms.js -->
+      <p>Loading rooms...</p>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    University of Houston · Student Center Room Booking (student project)
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/rooms.js"></script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+// Stage 2: Rooms API
+//
+// Endpoints to implement in this file:
+//   GET  /api/rooms       -> return the full list of rooms
+//   GET  /api/rooms/:id   -> return a single room by id (404 if not found)
+//
+// The GET /api/rooms route is done for you as a worked example.
+// Your job: implement GET /api/rooms/:id using the same pattern.
+
+const express = require("express");
+const router = express.Router();
+const { readData } = require("../utils/jsonStore");
+
+// GET /api/rooms  (already implemented - study this pattern)
+router.get("/", (req, res) => {
+  const rooms = readData("rooms.json");
+  res.json(rooms);
+});
+
+// GET /api/rooms/:id
+router.get("/:id", (req, res) => {
+  const rooms = readData("rooms.json");
+  const room = rooms.find((item) => item.id === req.params.id);
+
+  if (!room) {
+    return res.status(404).json({ error: "Room not found" });
+  }
+
+  res.json(room);
+});
+
+module.exports = router;

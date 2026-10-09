@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book a Room - UH Student Center</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <span class="brand">UH Student Center Rooms</span>
+    <a href="index.html">Home</a>
+    <a href="booking.html" class="active">Book a Room</a>
+    <a href="my-bookings.html">My Bookings</a>
+  </nav>
+
+  <main>
+    <h1>Book a Room</h1>
+
+    <div class="booking-layout">
+      <form id="booking-form">
+        <label for="room-select">Room</label>
+        <select id="room-select" name="roomId" required>
+          <option value="">-- Select a room --</option>
+          <!-- Options are filled in by js/booking.js -->
+        </select>
+
+        <label for="club-name">Club / Organization Name</label>
+        <input type="text" id="club-name" name="clubName" placeholder="e.g. Coog Coders" required />
+
+        <label for="date">Date</label>
+        <input type="date" id="date" name="date" required />
+
+        <div class="time-row">
+          <div>
+            <label for="start-time">Start Time</label>
+            <input type="time" id="start-time" name="startTime" required />
+          </div>
+          <div>
+            <label for="end-time">End Time</label>
+            <input type="time" id="end-time" name="endTime" required />
+          </div>
+        </div>
+
+        <label for="purpose">Purpose</label>
+        <textarea id="purpose" name="purpose" rows="4" placeholder="What is the meeting for?"></textarea>
+
+        <button type="submit">Submit Booking</button>
+        <p id="form-status" class="status-message"></p>
+      </form>
+
+      <aside id="room-details" class="room-details">
+        <p class="details-placeholder">Choose a room to see capacity, equipment, and the food policy.</p>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    University of Houston · Student Center Room Booking (student project)
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/booking.js"></script>
+</body>
+</html>
