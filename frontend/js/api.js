@@ -64,7 +64,7 @@ async function getBookings() {
 
 async function createBooking(bookingData) {
   // bookingData looks like:
-  // { roomId, clubName, date, startTime, endTime, purpose }
+  // { roomId, clubName, bookedBy, date, startTime, endTime, purpose }
   const response = await fetch("/api/bookings", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -73,6 +73,19 @@ async function createBooking(bookingData) {
   const data = await response.json();
   if (!response.ok) {
     throw new Error(data.error || "Could not save the booking.");
+  }
+  return data;
+}
+
+async function updateBooking(id, bookingData) {
+  const response = await fetch(`/api/bookings/${id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(bookingData),
+  });
+  const data = await response.json();
+  if (!response.ok) {
+    throw new Error(data.error || "Could not update the booking.");
   }
   return data;
 }

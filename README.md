@@ -15,8 +15,10 @@ can build on for each stage.
   room with its capacity, available equipment, and whether food is
   allowed.
 - A **Book a Room** page with a form to reserve a room.
-- A **My Bookings** page that lists existing bookings and lets you
-  cancel one.
+- A **My Bookings** page that lists, edits, and cancels bookings and
+  shows who made each reservation.
+- Room availability checks that prevent overlapping bookings, plus a
+  Home page filter for minimum room capacity.
 - A small **Express** server that stores rooms and bookings in
   **JSON files** (no database needed) and exposes them through a
   REST API.
@@ -36,7 +38,7 @@ myapp/
 │   │   └── bookings.json     # bookings data (starts empty: [])
 │   ├── routes/
 │   │   ├── rooms.js          # GET /api/rooms, GET /api/rooms/:id
-│   │   └── bookings.js       # GET/POST /api/bookings, DELETE /api/bookings/:id
+│   │   └── bookings.js       # GET/POST/PUT/DELETE /api/bookings
 │   └── utils/
 │       └── jsonStore.js      # helper functions to read/write the JSON files
 └── frontend/
@@ -121,10 +123,11 @@ Work only inside `backend/`.
 3. Look at `backend/routes/rooms.js` — the `GET /api/rooms` route is
    implemented as a worked example. Use the same pattern to
    implement `GET /api/rooms/:id`.
-4. Implement all three routes in `backend/routes/bookings.js`
+4. Implement the routes in `backend/routes/bookings.js`
    following the `TODO` comments:
    - `GET /api/bookings`
-   - `POST /api/bookings`
+   - `POST /api/bookings` (reject overlapping room reservations)
+   - `PUT /api/bookings/:id`
    - `DELETE /api/bookings/:id`
 5. Start the server with `npm start` (from `myapp/`) and test your
    endpoints **without a frontend**, using one of:
@@ -141,7 +144,8 @@ Work only inside `backend/`.
 | GET    | `/api/rooms`         | List all rooms                        | —                                                                          |
 | GET    | `/api/rooms/:id`     | Get one room by id                    | —                                                                          |
 | GET    | `/api/bookings`      | List all bookings                     | —                                                                          |
-| POST   | `/api/bookings`      | Create a new booking                  | `{ "roomId", "clubName", "date", "startTime", "endTime", "purpose" }`     |
+| POST   | `/api/bookings`      | Create a booking (409 if time overlaps) | `{ "roomId", "clubName", "bookedBy", "date", "startTime", "endTime", "purpose" }` |
+| PUT    | `/api/bookings/:id`  | Edit a booking (409 if time overlaps) | Same fields as POST                                                        |
 | DELETE | `/api/bookings/:id`  | Cancel (delete) a booking by id       | —                                                                          |
 
 **Room object shape** (`backend/data/rooms.json`):
@@ -163,6 +167,7 @@ Work only inside `backend/`.
   "id": "1735689600000",
   "roomId": "r1",
   "clubName": "Chess Club",
+  "bookedBy": "Alex Cougar",
   "date": "2026-10-01",
   "startTime": "14:00",
   "endTime": "15:00",
@@ -231,10 +236,11 @@ npm start
 and use the fully working app at `http://localhost:3000`, with data
 persisted in the JSON files under `backend/data/`.
 
-## Stretch goals (optional, for students who finish early)
+## Additional features
 
-- Prevent double-booking a room for an overlapping date/time.
-- Add simple client-side form validation (e.g. end time after start time).
-- Add a "search/filter rooms by capacity" input on the Home page.
-- Add an `PUT /api/bookings/:id` endpoint to edit an existing booking.
-- Persist and display *who* made each booking (a simple name field, no login system needed).
+- The server rejects reservations that overlap another booking for the
+  same room and date. Back-to-back bookings are allowed.
+- The booking forms check that the end time is after the start time.
+- The Home page can filter rooms by minimum capacity.
+- Bookings can be edited through `PUT /api/bookings/:id`.
+- Each booking stores and displays the name of the person who made it.

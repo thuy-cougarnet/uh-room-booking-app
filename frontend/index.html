@@ -23,7 +23,16 @@
       <a class="hero-btn" href="booking.html">Book a Room</a>
     </section>
 
-    <h2>Available Rooms</h2>
+    <div class="room-toolbar">
+      <div>
+        <h2>Available Rooms</h2>
+        <p>Filter by the number of people your group needs to seat.</p>
+      </div>
+      <div class="capacity-filter">
+        <label for="capacity-filter">Minimum capacity</label>
+        <input id="capacity-filter" type="number" min="1" step="1" placeholder="Any capacity" />
+      </div>
+    </div>
     <div id="room-list" class="room-list">
       <!-- Room cards are inserted here by js/rooms.js -->
       <p>Loading rooms...</p>

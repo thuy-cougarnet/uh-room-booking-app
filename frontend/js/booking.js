@@ -56,6 +56,7 @@ async function handleBookingSubmit(event) {
   const bookingData = {
     roomId: document.getElementById("room-select").value,
     clubName: document.getElementById("club-name").value.trim(),
+    bookedBy: document.getElementById("booked-by").value.trim(),
     date: document.getElementById("date").value,
     startTime: document.getElementById("start-time").value,
     endTime: document.getElementById("end-time").value,

@@ -28,6 +28,9 @@
         <label for="club-name">Club / Organization Name</label>
         <input type="text" id="club-name" name="clubName" placeholder="e.g. Coog Coders" required />
 
+        <label for="booked-by">Your Name</label>
+        <input type="text" id="booked-by" name="bookedBy" placeholder="Who is making this booking?" required />
+
         <label for="date">Date</label>
         <input type="date" id="date" name="date" required />
 
@@ -46,7 +49,7 @@
         <textarea id="purpose" name="purpose" rows="4" placeholder="What is the meeting for?"></textarea>
 
         <button type="submit">Submit Booking</button>
-        <p id="form-status" class="status-message"></p>
+        <p id="form-status" class="status-message" aria-live="polite"></p>
       </form>
 
       <aside id="room-details" class="room-details">

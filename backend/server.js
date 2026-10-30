@@ -17,7 +17,7 @@ const bookingsRouter = require("./routes/bookings");
 const app = express();
 const PORT = 3000;
 
-// Allow Express to read JSON request bodies (needed for POST /api/bookings)
+// Allow Express to read JSON request bodies (needed for POST/PUT /api/bookings)
 app.use(express.json());
 
 // Serve the frontend folder as static files
